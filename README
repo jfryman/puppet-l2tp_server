@@ -1,6 +1,9 @@
 Overview
 ========
-This module aims to setup and manage a L2TP VPN on Debian/etch and Debian/squeeze. The goal of this module is to manage a VPN server that allows Apple mobile clients to connect and surf the local network and/or internet via this setup, and tied in with my existing authentication infrastructure (OpenLDAP).
+This module aims to setup and manage a L2TP VPN on Debian/etch and Debian/squeeze. 
+The goal of this module is to manage a VPN server that allows Apple mobile clients to connect 
+and surf the local network and/or internet via this setup, and tied in with my existing 
+authentication infrastructure (OpenLDAP).
 
 This module leverages several Debian packages in order to accomplish it's goals:
 	- L2TP server: xl2tpd
@@ -11,13 +14,20 @@ This VPN has been tested on iPhone/iPad/OSX/Windows. Any L2TP capable client
 	
 Out of scope
 ------------
-* At the time of creation, iOS devices do not allow straight-up IPSec Road-Warrior type connections. As such, extra options such as Client Certificate Authentication are out of scope
-* RADIUS AAA. RADIUS was leveraged as a tie-in between pppd and OpenLDAP to allow authentication. OpenLDAP schema extensions were not required, so AAA accounting is not enabled. 
-* Firewall rules are managed outside of this module. However, it should be assumed that the following ports are open to the box(es) in question.
+* At the time of creation, iOS devices do not allow straight-up IPSec Road-Warrior type connections. 
+  As such, extra options such as Client Certificate Authentication are out of scope
+
+* RADIUS AAA. RADIUS was leveraged as a tie-in between pppd and OpenLDAP to allow authentication. 
+  OpenLDAP schema extensions were not required, so AAA accounting is not enabled. 
+
+* Firewall rules are managed outside of this module. However, it should be assumed that the 
+  following ports are open to the box(es) in question.
 	- UDP 500
 	- UDP 4500
 	- UDP 1701
-* LDAP. It is assumed that an appropriate LDAP server is setup, bind credentials exist, and everything has been tested. 
+
+* LDAP. It is assumed that an appropriate LDAP server is setup, bind credentials exist, 
+  and everything has been tested. 
 
 
 Variables
@@ -25,28 +35,28 @@ Variables
 
 Required 
 --------
-$ipsec_endpoint - this variable sets the 'right' endpoint for the IPSec VPN Tunnel. This should be the external IP of the server.
-	ex: $ipsec_endpoint = "1.2.3.4"
+$ipsec_endpoint - this variable sets the 'right' endpoint for the IPSec VPN Tunnel. This should be 
+				  the external IP of the server. ex: $ipsec_endpoint = "1.2.3.4"
 	
-$ipsec_secret - this variable sets the IPSec Shared Secret used between road-warriors and the server. 
-	ex: $ipsec_secret = "IreallyenjoyL2TPServers!"
+$ipsec_secret - this variable sets the IPSec Shared Secret used between road-warriors 
+				and the server. ex: $ipsec_secret = "IreallyenjoyL2TPServers!"
 	
-$vpn_server - This is the server IP address used for the PPP tunnel between server and road-warriors. 
-	ex: $vpn_server = "10.5.2.1"
+$vpn_server - This is the server IP address used for the PPP tunnel between server 
+			  and road-warriors. ex: $vpn_server = "10.5.2.1"
 	
-$vpn_clients - This variable sets the assigned IP addresses between the Server and Road-Warrior clients. This number assumes a PtP connection between client/server, so as long as routing rules and firewall rules are managed appropriately, this range could be as small or as large as desired. 
+$vpn_clients - This variable sets the assigned IP addresses between the Server and Road-Warrior 
+			   clients. This number assumes a PtP connection between client/server, so as long as 
+			   routing rules and firewall rules are managed appropriately, this range could be as 
+			   small or as large as desired. ex: $vpn_clients = "10.5.2.2 - 10.5.2.254" 
 
-$ldap_server - Server address for the LDAP Server
-	ex: $ldap_server = "ldap.test.com"
+$ldap_server - Server address for the LDAP Server. ex: $ldap_server = "ldap.test.com"
 
-$ldap_bind_user - User to search for authentication in OpenLDAP
-	ex: $ldap_bind_user = "cn=radiususer,dc=test,dc=com"
+$ldap_bind_user - User to search for authentication in OpenLDAP 
+				  ex: $ldap_bind_user = "cn=radiususer,dc=test,dc=com"
 	
-$ldap_bind_pass - password for $ldap_bind_user
-	ex: $ldap_bind_pass = "#IWishF0rMoreWishes#"
-
-$ldap_basedn - Base DN for LDAP Searches (subordinate search)
-	ex: $ldap_basedn = "dc=test,dc=com"
+$ldap_bind_pass - password for $ldap_bind_user. ex: $ldap_bind_pass = "#IWishF0rMoreWishes#"
+	
+$ldap_basedn - Base DN for LDAP Searches (subordinate search). ex: $ldap_basedn = "dc=test,dc=com"
 	
 $radius_secret - RADIUS secret from Radius Client (VPN Server) to Radius Server (localhost)
 
