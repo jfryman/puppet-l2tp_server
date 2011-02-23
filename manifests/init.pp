@@ -102,6 +102,21 @@ class l2tp::server {
     group     => root,
     require   => Package[$radiusPackages],
     notify    => Service[freeradius];
+    
+  file { "/etc/freeradius/sites-enabled/default":
+   	ensure 	=> present,
+   	source	=> ["puppet:///l2tp_server/freeradius/default"],
+   	notify  => Service[freeradius],
+   	owner   => root, group => root, mode => 0644,
+   	require => Package[$radiusPackages]
+    }
+  file { "/etc/freeradius/sites-enabled/inner-tunnel":
+    ensure 	=> present,
+    source	=> ["puppet:///l2tp_server/freeradius/inner-tunnel"],
+    notify  => Service[freeradius],
+    owner   => root, group => root, mode => 0644,
+    require => Package[$radiusPackages]
+  }
   
 }
 
