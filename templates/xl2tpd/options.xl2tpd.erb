@@ -1,0 +1,13 @@
+require-pap
+asyncmap 0
+auth
+lock
+hide-password
+local
+#debug
+name l2tpd
+proxyarp
+lcp-echo-interval 30
+lcp-echo-failure 4
+plugin radius.so
+ms-dns <%= vpn_dns %>

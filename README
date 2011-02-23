@@ -48,6 +48,8 @@ $vpn_clients - This variable sets the assigned IP addresses between the Server a
 			   clients. This number assumes a PtP connection between client/server, so as long as 
 			   routing rules and firewall rules are managed appropriately, this range could be as 
 			   small or as large as desired. ex: $vpn_clients = "10.5.2.2 - 10.5.2.254" 
+			
+$vpn_dns - This variable sets the DNS server IP for VPN Road-Warrior clients to utilize.
 
 $ldap_server - Server address for the LDAP Server. ex: $ldap_server = "ldap.test.com"
 
@@ -69,3 +71,4 @@ TODO
 	- $ipsec_secret : auto-generation? 
 * Modify configs to allow RADIUS server to exist on separate server (not localhost)
 	- maybe fork RADIUS config into own puppet module
+* Add CentOS/RHEL specific configurations

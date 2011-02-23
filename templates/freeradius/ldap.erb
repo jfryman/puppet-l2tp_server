@@ -1,0 +1,42 @@
+ldap {
+	server = "<%= ldap_server %>"
+	identity = "<%= ldap_bind_user %>"
+	password = "<%= ldap_bind_pass %>"
+	basedn = "<%= ldap_base_dn %>"
+	filter = "(uid=%{%{Stripped-User-Name}:-%{User-Name}})"
+
+	ldap_connections_number = 5
+	timeout = 4
+	timelimit = 3
+	net_timeout = 1
+	
+	dictionary_mapping = ${confdir}/ldap.attrmap
+	password_attribute = userPassword
+	edir_account_policy_check = no
+	
+	tls {
+		# Set this to 'yes' to use TLS encrypted connections
+		# to the LDAP database by using the StartTLS extended
+		# operation.
+		#			
+		# The StartTLS operation is supposed to be
+		# used with normal ldap connections instead of
+		# using ldaps (port 689) connections
+		start_tls = no
+
+		# cacertfile	= /path/to/cacert.pem
+		# cacertdir		= /path/to/ca/dir/
+		# certfile		= /path/to/radius.crt
+		# keyfile		= /path/to/radius.key
+		# randfile		= /path/to/rnd
+
+		#  Certificate Verification requirements.  Can be:
+		#    "never" (don't even bother trying)
+		#    "allow" (try, but don't fail if the cerificate
+		#		can't be verified)
+		#    "demand" (fail if the certificate doesn't verify.)
+		#
+		#	The default is "allow"
+		# require_cert	= "demand"
+	}
+}

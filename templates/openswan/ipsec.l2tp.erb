@@ -1,0 +1,14 @@
+conn L2TP
+	authby=psk
+	pfs=no
+	rekey=no
+	type=tunnel
+	esp=aes128-sha1
+	ike=aes128-sha-modp1024
+	left=<%= ipsec_endpoint  %>
+	leftnexthop=%defaultroute
+	leftprotoport=17/1701
+	right=%any
+	rightprotoport=17/%any
+	rightsubnetwithin=0.0.0.0/0
+	auto=add

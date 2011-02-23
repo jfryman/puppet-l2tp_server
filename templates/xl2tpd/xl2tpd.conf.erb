@@ -1,0 +1,16 @@
+[global]
+#debug network = yes
+#debug tunnel = yes
+#debug avp = yes
+#debug packet = yes
+#debug state = yes
+
+[lns default]
+ip range = <%= vpn_clients %>
+local ip = <%= vpn_server %>
+refuse chap = yes
+require pap = yes
+require authentication = no
+ppp debug = yes
+pppoptfile = /etc/ppp/options.xl2tpd
+length bit = yes
