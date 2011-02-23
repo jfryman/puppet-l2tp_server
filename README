@@ -40,7 +40,8 @@ Variables
 
 Required 
 --------
-$ipsec_endpoint - this variable sets the 'right' endpoint for the IPSec VPN Tunnel. This should be the external IP of the server. 
+$ipsec_endpoint - this variable sets the 'right' endpoint for the IPSec VPN 
+Tunnel. This should be the external IP of the server. 
 	ex: $ipsec_endpoint = "1.2.3.4"
 	
 $ipsec_secret - this variable sets the IPSec Shared Secret used between 
