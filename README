@@ -15,9 +15,7 @@ This VPN has been tested on iPhone/iPad/OSX/Windows. Any L2TP capable client
 	
 Out of scope
 ------------
-* At the time of creation, iOS devices do not allow straight-up IPSec 
-Road-Warrior type connections. As such, extra options such as Client 
-Certificate Authentication are out of scope
+* Certificate based Road-Warrior connections.
 
 * RADIUS AAA. RADIUS was leveraged as a tie-in between pppd and OpenLDAP to 
 allow authentication. OpenLDAP schema extensions were not required, so AAA 
@@ -33,7 +31,6 @@ to the Internet
 
 * LDAP. It is assumed that an appropriate LDAP server is setup, bind 
 credentials exist, and everything has been tested. 
-
 
 Variables
 =========
